@@ -1,0 +1,36 @@
+name: CMake Build + Style Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libproj-dev clang-format
+
+      - name: Check code style with clang-format
+        run: |
+          # Проверим все .cpp и .hpp файлы в проекте
+          files=$(git ls-files '*.cpp' '*.hpp')
+          echo "Checking style for files:"
+          echo "$files"
+          for file in $files; do
+            clang-format -style=file "$file" | diff -u "$file" - || (echo "Code style issues found in $file" && exit 1)
+          done
+
+      - name: Configure project
+        run: cmake -S . -B build
+
+      - name: Build project
+        run: cmake --build build
