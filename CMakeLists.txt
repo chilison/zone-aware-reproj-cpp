@@ -28,3 +28,6 @@ target_link_libraries(main PRIVATE ${PROJ_LIBRARIES})
 
 find_package(GDAL REQUIRED)
 target_link_libraries(main PRIVATE GDAL::GDAL)
+
+find_package(nlohmann_json 3.2.0 REQUIRED)
+target_link_libraries(main PRIVATE nlohmann_json::nlohmann_json)
