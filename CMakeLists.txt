@@ -5,9 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCES
     main.cpp
-    src/ProjectionEngine.cpp  
-    src/ProjectionManager.cpp  
-    src/Point.cpp   
+    src/ProjectionEngine.cpp
+    src/ProjectionManager.cpp
+    src/Point.cpp
     src/RandomPointGenerator.cpp
     src/GeoTIFFReader.cpp
 )

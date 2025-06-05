@@ -1,16 +1,13 @@
 #include "Point.hpp"
+
 #include <proj.h>
+
 #include <cmath>
 #include <stdexcept>
 
-Point::Point(double lat, double lon)
-    : lat(lat), lon(lon)
-{
-    calculateUTM();
-}
+Point::Point(double lat, double lon) : lat(lat), lon(lon) { calculateUTM(); }
 
-void Point::calculateUTM()
-{
+void Point::calculateUTM() {
     PJ_CONTEXT *context = proj_context_create();
 
     int zone = static_cast<int>((lon + 180) / 6) + 1;
@@ -20,14 +17,9 @@ void Point::calculateUTM()
     std::string utm_def = "+proj=utm +zone=" + std::to_string(zone) +
                           (lat >= 0 ? " +north" : " +south") + " +datum=WGS84 +units=m +no_defs";
 
-    PJ *transformation = proj_create_crs_to_crs(
-        context,
-        "EPSG:4326",
-        utm_def.c_str(),
-        nullptr);
+    PJ *transformation = proj_create_crs_to_crs(context, "EPSG:4326", utm_def.c_str(), nullptr);
 
-    if (!transformation)
-    {
+    if (!transformation) {
         throw std::runtime_error("Failed to create PROJ transformation.");
     }
 

@@ -1,13 +1,13 @@
 #pragma once
 
+#include <functional>
+#include <vector>
+
 #include "Point.hpp"
 #include "ProjectionEngine.hpp"
-#include <vector>
-#include <functional>
 
-class ProjectionManager
-{
-public:
+class ProjectionManager {
+   public:
     ProjectionManager();
 
     void checkAndReset();
@@ -15,7 +15,7 @@ public:
     void registerCallback(std::function<void(const TMParameters &, const EQDCParameters &)> cb);
     const std::vector<Point> &getHistory() const { return history; }
 
-private:
+   private:
     double accumulatedLat = 0.0;
     double accumulatedLon = 0.0;
     double baseLat = 0.0;

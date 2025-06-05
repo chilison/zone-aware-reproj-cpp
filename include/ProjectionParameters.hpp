@@ -1,13 +1,11 @@
 #pragma once
 
-struct TMParameters
-{
+struct TMParameters {
     double lat_0;
     double lon_0;
 };
 
-struct EQDCParameters
-{
+struct EQDCParameters {
     double lat_1;
     double lat_2;
     double lon_0;

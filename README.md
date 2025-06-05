@@ -7,7 +7,7 @@ A C++ library that ensures real-time coordinate consistency with a controllable 
 - C++17 compiler
 - [PROJ](https://proj.org/) version 6.0 or higher
 
-## How to run? 
+## How to run?
 ```
 mkdir build
 cd build

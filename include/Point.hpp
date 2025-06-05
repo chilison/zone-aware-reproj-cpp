@@ -2,9 +2,8 @@
 
 #include <string>
 
-class Point
-{
-public:
+class Point {
+   public:
     double lat;
     double lon;
 
@@ -20,6 +19,6 @@ public:
 
     Point(double lat, double lon);
 
-private:
+   private:
     void calculateUTM();
 };
