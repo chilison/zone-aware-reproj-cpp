@@ -1,20 +1,21 @@
 #pragma once
 
-#include "PointSource.hpp"
-#include "Point.hpp"
-#include <vector>
+#include <geodesic.h>
 #include <proj.h>
-#include "external/geodesic.h"
 
-class RandomPointGenerator : public PointSource
-{
-public:
+#include <vector>
+
+#include "Point.hpp"
+#include "PointSource.hpp"
+
+class RandomPointGenerator : public PointSource {
+   public:
     explicit RandomPointGenerator(const Point &startPoint);
     ~RandomPointGenerator() = default;
 
-    std::vector<Point> getPoints() override;
+    std::vector<Point> &getPoints() override;
 
-private:
+   private:
     Point startPoint;
     std::vector<Point> points;
 

@@ -9,11 +9,11 @@ set(SOURCES
     src/ProjectionManager.cpp  
     src/Point.cpp   
     src/RandomPointGenerator.cpp
+    src/GeoTIFFReader.cpp
 )
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_SOURCE_DIR}/include/external
 )
 
 find_package(PROJ REQUIRED)
@@ -25,3 +25,6 @@ endif()
 add_executable(main ${SOURCES})
 
 target_link_libraries(main PRIVATE ${PROJ_LIBRARIES})
+
+find_package(GDAL REQUIRED)
+target_link_libraries(main PRIVATE GDAL::GDAL)
